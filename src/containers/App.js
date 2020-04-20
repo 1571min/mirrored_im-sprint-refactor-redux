@@ -1,12 +1,12 @@
-import React from "react";
-import Nav from "./Nav";
-import { connect } from "react-redux";
-import VideoPlayer from "../components/VideoPlayer";
-import VideoList from "./VideoList";
-import Setting from "./Setting";
-import { searchYouTube } from "../searchYouTube";
-import { YOUTUBE_API_KEY } from "../../config/youtube";
-import { setCurrentVideo } from "../actions";
+import React from 'react';
+import Nav from './Nav';
+import { connect } from 'react-redux';
+import VideoPlayer from '../components/VideoPlayer';
+import VideoList from './VideoList';
+import Setting from './Setting';
+import { searchYouTube } from '../searchYouTube';
+import { YOUTUBE_API_KEY } from '../../config/youtube';
+import { setCurrentVideo } from '../actions';
 
 class App extends React.Component {
   constructor(props) {
@@ -14,37 +14,37 @@ class App extends React.Component {
 
     this.state = {
       videos: [],
-      isSettingOpen: false
+      isSettingOpen: false,
     };
   }
 
   componentDidMount() {
-    this.getYouTubeVideos("코드스테이츠");
+    this.getYouTubeVideos('코드스테이츠');
   }
 
   getYouTubeVideos(query) {
     var options = {
       key: YOUTUBE_API_KEY,
-      query: query
+      query: query,
     };
 
-    searchYouTube(options, videos => {
+    searchYouTube(options, (videos) => {
       this.setState({
-        videos: videos
+        videos: videos,
       });
       this.props.dispatch(setCurrentVideo(videos[0]));
     });
   }
 
   handleSettingButtonClick() {
-    this.setState(prevState => ({
-      isSettingOpen: !prevState.isSettingOpen
+    this.setState((prevState) => ({
+      isSettingOpen: !prevState.isSettingOpen,
     }));
   }
 
   render() {
     return (
-      <div className={this.props.darkMode ? "main dark" : "main light"}>
+      <div className={this.props.darkMode ? 'main dark' : 'main light'}>
         <Nav
           handleSearchInputChange={this.getYouTubeVideos.bind(this)}
           handleSettingButtonClick={this.handleSettingButtonClick.bind(this)}
@@ -67,10 +67,10 @@ class App extends React.Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     currentVideo: state.videoReducer.currentVideo,
-    darkMode: state.settingReducer.darkMode
+    darkMode: state.settingReducer.darkMode,
   };
 };
 

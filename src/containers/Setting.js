@@ -5,7 +5,6 @@ import { setUsername, setDarkMode } from '../actions';
 class Setting extends React.Component {
   constructor(props) {
     super(props);
-
     this.state = {
       username: props.user.name,
     };
@@ -42,7 +41,7 @@ class Setting extends React.Component {
               value={this.state.username}
               onChange={this.handleChangeName.bind(this)}
             />
-            <button onClick={this.handleSave.bind(this)}>저장</button>
+            <button onClick={this.handleSave.bind(this)}>save</button>
           </fieldset>
 
           <hr />
